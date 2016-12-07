@@ -6,8 +6,8 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const cors = require('cors')
-const config = require('./config')
 const router = require('./router')
+
 
 // 连接数据库
 require('./db')
