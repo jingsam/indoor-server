@@ -22,18 +22,19 @@ module.exports.create = function(req, res, next) {
 
 module.exports.query = function(req, res, next) {
   const deviceId = req.query.deviceId
-  const start = req.query.start
-  const end = req.query.end
+  const start = req.query.start ? new Date(req.query.start) : new Date(0)
+  const end = req.query.end ? new Date(req.query.end) : new Date()
 
-  let query = {
-    deviceId,
+  const query = {
     createdAt: {
-      $gte: Date(start),
-      $lte: Date(end)
+      $gte: start,
+      $lte: end
     }
   }
 
-  Location.find(query, function(err, locations) {
+  if (deviceId) query.deviceId = deviceId
+
+  Location.find(query, (err, locations) => {
     if (err) return next(err)
 
     res.json(locations)
