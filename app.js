@@ -8,8 +8,7 @@ const methodOverride = require('method-override')
 const cors = require('cors')
 const router = require('./router')
 
-
-// 连接数据库
+// connect to db
 require('./db')
 
 const app = express()

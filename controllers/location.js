@@ -1,6 +1,25 @@
 const Location = require('../models/location')
 
 
+module.exports.create = function(req, res, next) {
+  const deviceId = req.body.deviceId
+  const lng = req.body.lng
+  const lat = req.body.lat
+
+  const location = new Location({
+    deviceId,
+    lng,
+    lat
+  })
+
+  location.save((err) => {
+    if (err) return next(err)
+
+    res.json(location)
+  })
+}
+
+
 module.exports.query = function(req, res, next) {
   const deviceId = req.query.deviceId
   const start = req.query.start
@@ -21,16 +40,4 @@ module.exports.query = function(req, res, next) {
   })
 }
 
-module.exports.upload = function(req, res, next) {
-  const location = new Location({
-    deviceId: req.body.deviceId,
-    longtitude: req.body.longtitude,
-    latitude: req.body.latitude
-  })
 
-  location.save(function(err, location) {
-    if (err) return next(err)
-
-    res.json(location)
-  })
-}

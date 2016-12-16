@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
 
-mongoose.connect('mongodb://localhost/zootopia')
+mongoose.connect('mongodb://localhost/indoor')
 
-/* eslint-disable no-console */
+
 mongoose.connection.on('connected', function() {
   console.log('Mongoose connected')
 })

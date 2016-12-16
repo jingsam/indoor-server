@@ -4,8 +4,8 @@ const select = require('mongoose-json-select')
 
 const LocationSchema = new mongoose.Schema({
   deviceId: { type: String, index: true },
-  longtitude: Number,
-  latitude: Number
+  lng: Number,
+  lat: Number
 }, { timestamps: true })
 
 LocationSchema.plugin(select, '-_id -__v')
