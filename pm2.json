@@ -2,6 +2,7 @@
   "apps": [{
     "name": "",
     "script": "./bin/www",
+    "cwd": "~/indoor-server"
     "instances": "max",
     "exec_mode": "cluster",
     "env": {
