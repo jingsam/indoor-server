@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - '4.4.4'
+services:
+  - mongodb
+addons:
+  apt:
+    sources:
+      - mongodb-3.2-precise
+    packages:
+      - mongodb-org-server
+before_install:
+  - openssl aes-256-cbc -K $encrypted_830d3b21a25d_key -iv $encrypted_830d3b21a25d_iv
+    -in id_rsa.enc -out ~/.ssh/id_rsa -d
+  - chmod 600 ~/.ssh/id_rsa
+  - echo -e "Host 101.200.63.93\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+script:
+  - npm run test
+after_success:
+  - npm prune --production
+  - tar -jcf indoor-server.tar.bz2 *
+  - scp indoor-server.tar.bz2 jingsam@101.200.63.93:~/
+  - ssh jingsam@101.200.63.93 'mkdir -p indoor-server | tar -jxf indoor-server.tar.bz2 -C indoor-server | pm2 reload indoor-server/pm2.json'
