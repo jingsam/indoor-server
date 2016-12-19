@@ -20,5 +20,5 @@ after_success:
   - npm prune --production
   - tar -jcf indoor-server.tar.bz2 *
   - scp indoor-server.tar.bz2 jingsam@101.200.63.93:~/
-  - ssh jingsam@101.200.63.93 'mkdir -p indoor-server | tar -jxf indoor-server.tar.bz2 -C indoor-server'
-  - ssh jingsam@101.200.63.93 'echo $PATH | cd indoor-server | ~/n/bin/pm2 startOrReload pm2.json'
+  - ssh jingsam@101.200.63.93 'mkdir -p indoor-server && tar -jxf indoor-server.tar.bz2 -C indoor-server'
+  - ssh jingsam@101.200.63.93 'echo $PATH && cd indoor-server && ~/n/bin/pm2 startOrReload pm2.json'
