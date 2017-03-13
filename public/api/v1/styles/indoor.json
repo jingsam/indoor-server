@@ -44,7 +44,7 @@
 		}
     },
     "sprite": "http://101.200.63.93/api/v1/sprites/sprite",
-    "glyphs": "http://101.200.63.93/api/v1fonts/{fontstack}/{range}.pbf",
+    "glyphs": "http://101.200.63.93/api/v1/fonts/{fontstack}/{range}.pbf",
     "layers": [
         {
             "id": "background",
