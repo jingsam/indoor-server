@@ -1,0 +1,237 @@
+{
+    "version": 8,
+    "name": "indoor2",
+    "metadata": {
+        "mapbox:autocomposite": true,
+        "mapbox:type": "default",
+        "mapbox:trackposition": false
+    },
+    "center": [
+        116.42029784516643,
+        39.94763452200064
+    ],
+    "zoom": 20.5,
+    "bearing": -70,
+    "pitch": 40,
+    "light": {
+        "intensity": 0.5,
+        "color": "hsl(0, 0%, 100%)"
+    },
+    "sources": {
+		"ground": {
+			"type": "geojson",
+			"data": "http://101.200.63.93/api/v1/tilesets/ground.geojson"
+		},
+		"facilities": {
+			"type": "geojson",
+			"data": "http://101.200.63.93/api/v1/tilesets/facilities.geojson"
+		},
+		"gates": {
+			"type": "geojson",
+			"data": "http://101.200.63.93/api/v1/tilesets/gates.geojson"
+		},
+		"locations": {
+			"type": "geojson",
+			"data": "http://101.200.63.93/api/v1/tilesets/locations.geojson"
+		},
+		"points": {
+			"type": "geojson",
+			"data": "http://101.200.63.93/api/v1/tilesets/points.geojson"
+		},
+		"routes": {
+			"type": "geojson",
+			"data": "http://101.200.63.93/api/v1/tilesets/routes.geojson"
+		}
+    },
+    "sprite": "http://101.200.63.93/api/v1/sprites/sprite",
+    "glyphs": "http://101.200.63.93/api/v1fonts/{fontstack}/{range}.pbf",
+    "layers": [
+        {
+            "id": "background",
+            "type": "background",
+            "paint": {
+                "background-color": "hsl(0, 0%, 82%)"
+            }
+        },
+        {
+            "id": "ground",
+            "type": "fill",
+            "source": "ground",
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "hsl(0, 84%, 87%)",
+                "fill-outline-color": "hsl(0, 84%, 87%)"
+            }
+        },
+        {
+            "id": "gates",
+            "type": "line",
+            "source": "gates",
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0, 74%, 49%)"
+            }
+        },
+        {
+            "id": "facilities-base",
+            "type": "fill",
+            "source": "facilities",
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(238, 33%, 51%)",
+                "fill-outline-color": "hsl(229, 100%, 50%)"
+            }
+        },
+        {
+            "id": "facilities-line",
+            "type": "line",
+            "source": "facilities",
+            "layout": {},
+            "paint": {
+                "line-color": "hsl(0, 0%, 0%)"
+            }
+        },
+        {
+            "id": "facilities",
+            "type": "fill-extrusion",
+            "source": "facilities",
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-extrusion-height": 0.4,
+                "fill-extrusion-color": "hsl(238, 33%, 51%)"
+            }
+        },
+        {
+            "id": "wall-base",
+            "type": "fill",
+            "source": "ground",
+            "filter": [
+                "in",
+                "类型",
+                "墙",
+                "窗户"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-outline-color": "hsla(0, 74%, 49%, 0.99)",
+                "fill-color": "hsla(0, 74%, 49%, 0.99)"
+            }
+        },
+        {
+            "id": "wall-line",
+            "type": "line",
+            "source": "ground",
+            "filter": [
+                "in",
+                "类型",
+                "墙",
+                "窗户"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0, 0%, 0%)"
+            }
+        },
+        {
+            "id": "wall",
+            "type": "fill-extrusion",
+            "source": "ground",
+            "filter": [
+                "in",
+                "类型",
+                "墙",
+                "窗户"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-extrusion-color": "hsl(0, 74%, 49%)",
+                "fill-extrusion-height": 1
+            }
+        },
+        {
+            "id": "window",
+            "type": "fill-extrusion",
+            "source": "ground",
+            "filter": [
+                "==",
+                "类型",
+                "窗户"
+            ],
+            "layout": {
+                "visibility": "none"
+            },
+            "paint": {
+                "fill-extrusion-color": "hsl(165, 100%, 51%)",
+                "fill-extrusion-height": 1
+            }
+        },
+        {
+            "id": "routes",
+            "type": "line",
+            "source": "routes",
+            "layout": {
+                "visibility": "none"
+            },
+            "paint": {
+                "line-color": "hsl(229, 100%, 50%)",
+                "line-width": 3,
+                "line-gap-width": 0
+            }
+        },
+        {
+            "id": "points",
+            "type": "circle",
+            "source": "points",
+            "layout": {
+                "visibility": "none"
+            },
+            "paint": {
+                "circle-color": "hsl(194, 100%, 36%)",
+                "circle-radius": 5,
+                "circle-blur": 0
+            }
+        },
+        {
+            "id": "poi",
+            "type": "symbol",
+            "source": "locations",
+            "filter": [
+                "in",
+                "$type",
+                "LineString",
+                "Point",
+                "Polygon"
+            ],
+            "layout": {
+                "visibility": "visible",
+                "text-field": "{名称}",
+                "text-size": 10,
+                "text-ignore-placement": true,
+                "text-max-width": 6
+            },
+            "paint": {
+                "text-halo-color": "hsl(0, 0%, 100%)",
+                "text-halo-width": 1,
+                "text-halo-blur": 1
+            }
+        }
+    ],
+    "created": "2017-02-21T13:46:53.119Z",
+    "id": "cizfl4jyx007m2sji1ndyc4nl",
+    "modified": "2017-02-27T02:30:50.867Z",
+    "owner": "maper",
+    "visibility": "private",
+    "draft": false
+}
