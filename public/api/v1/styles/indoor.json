@@ -1,11 +1,6 @@
 {
     "version": 8,
     "name": "indoor2",
-    "metadata": {
-        "mapbox:autocomposite": true,
-        "mapbox:type": "default",
-        "mapbox:trackposition": false
-    },
     "center": [
         116.42029784516643,
         39.94763452200064
@@ -208,11 +203,9 @@
             "type": "symbol",
             "source": "locations",
             "filter": [
-                "in",
-                "$type",
-                "LineString",
-                "Point",
-                "Polygon"
+                "!=",
+                "名称",
+                null
             ],
             "layout": {
                 "visibility": "visible",
