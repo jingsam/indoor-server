@@ -202,11 +202,6 @@
             "id": "poi",
             "type": "symbol",
             "source": "locations",
-            "filter": [
-                "!=",
-                "名称",
-                null
-            ],
             "layout": {
                 "visibility": "visible",
                 "text-field": "{名称}",
